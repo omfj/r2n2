@@ -1,19 +1,19 @@
-import { S3 } from "@aws-sdk/client-s3"
+import { S3 } from "@aws-sdk/client-s3";
 
 export class Bucket {
-  name: string
-  s3: S3
+  name: string;
+  s3: S3;
 
   constructor(name: string, s3: S3) {
-    this.name = name
-    this.s3 = s3
+    this.name = name;
+    this.s3 = s3;
   }
 
   async get(key: string) {
     const response = await this.s3.getObject({
       Bucket: this.name,
       Key: key,
-    })
+    });
 
     return {
       body: response.Body,
@@ -23,17 +23,17 @@ export class Bucket {
       metadata: response.Metadata,
       etag: response.ETag,
       expiration: response.Expiration,
-    }
+    };
   }
 
   async list(prefix?: string) {
     const response = await this.s3.listObjectsV2({
       Bucket: this.name,
       Prefix: prefix,
-    })
+    });
 
     if (!response.Contents) {
-      return []
+      return [];
     }
 
     return response.Contents.map((object) => ({
@@ -41,7 +41,7 @@ export class Bucket {
       lastModified: object.LastModified,
       etag: object.ETag,
       size: object.Size,
-    }))
+    }));
   }
 
   async delete(key: string): Promise<{ ok: true } | { ok: false; error: string }> {
@@ -49,16 +49,16 @@ export class Bucket {
       await this.s3.deleteObject({
         Bucket: this.name,
         Key: key,
-      })
+      });
     } catch (error) {
       if (error instanceof Error) {
-        return { ok: false, error: error.message }
+        return { ok: false, error: error.message };
       }
 
-      return { ok: false, error: "Unknown error" }
+      return { ok: false, error: "Unknown error" };
     }
 
-    return { ok: true }
+    return { ok: true };
   }
 
   async put(key: string, blob: Uint8Array | Blob | Buffer | ReadableStream | string | undefined) {
@@ -67,7 +67,7 @@ export class Bucket {
         Bucket: this.name,
         Key: key,
         Body: blob,
-      })
+      });
 
       return {
         ok: true,
@@ -75,13 +75,13 @@ export class Bucket {
           etag: response.ETag,
           expiration: response.Expiration,
         },
-      }
+      };
     } catch (error) {
       if (error instanceof Error) {
-        return { ok: false, error: error.message }
+        return { ok: false, error: error.message };
       }
 
-      return { ok: false, error: "Unknown error" }
+      return { ok: false, error: "Unknown error" };
     }
   }
 }

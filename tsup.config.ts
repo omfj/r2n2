@@ -1,4 +1,4 @@
-import { defineConfig } from "tsup"
+import { defineConfig } from "tsup";
 
 export default defineConfig({
   target: "node20",
@@ -6,4 +6,4 @@ export default defineConfig({
     resolve: true,
     entry: "./src/index.ts",
   },
-})
+});
