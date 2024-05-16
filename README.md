@@ -1,6 +1,6 @@
 # r2n2
 
-Simple R2 client for Node.js built on top of `@aws-sdk/client-s3`.
+Simple Cloudflare R2 client for Node.js built on top of `@aws-sdk/client-s3`.
 
 ## Why?
 
