@@ -24,15 +24,15 @@ pnpm add @omfj/r2n2
 Connect to the R2 bucket and get a file.
 
 ```typescript
-import { R2 } from "@omfj/r2n2";
+import { R2 } from "@omfj/r2n2"
 
 const r2 = new R2({
   accessKeyId: process.env.ACCES_KEY_ID,
   accountId: proccess.env.ACCOUNT_ID,
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
-});
+})
 
-const bucket = r2.bucket("my-bucket");
+const bucket = r2.bucket("my-bucket")
 
 const file = await bucket.get("my-file.txt");
 ```
