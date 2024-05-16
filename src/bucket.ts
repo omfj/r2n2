@@ -1,6 +1,6 @@
 import { S3 } from "@aws-sdk/client-s3";
 import { R2Config } from "./r2";
-import { Jurisdiction, createEndpoint } from "endpoint";
+import { Jurisdiction, createEndpoint } from "./endpoint";
 
 export type BucketOptions = {
   jurisdiction?: Jurisdiction;
