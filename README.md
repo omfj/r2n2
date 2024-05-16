@@ -34,7 +34,7 @@ const r2 = new R2({
 
 const bucket = r2.bucket("my-bucket");
 
-const file = await bucket.file("my-file.txt");
+const file = await bucket.get("my-file.txt");
 ```
 
 ## License
