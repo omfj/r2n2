@@ -1,4 +1,5 @@
 import { S3 } from "@aws-sdk/client-s3";
+import { Readable } from "node:stream";
 
 export class Bucket {
   name: string;
@@ -9,6 +10,12 @@ export class Bucket {
     this.s3 = s3;
   }
 
+  /**
+   * Retrieves an object from the bucket.
+   *
+   * @param key - The key of the object.
+   * @returns The object data.
+   */
   async get(key: string) {
     const response = await this.s3.getObject({
       Bucket: this.name,
@@ -26,6 +33,12 @@ export class Bucket {
     };
   }
 
+  /**
+   * Lists all objects in the bucket.
+   *
+   * @param prefix - The prefix of the objects.
+   * @returns The list of objects.
+   */
   async list(prefix?: string) {
     const response = await this.s3.listObjectsV2({
       Bucket: this.name,
@@ -44,6 +57,12 @@ export class Bucket {
     }));
   }
 
+  /**
+   * Deletes an object from the bucket.
+   *
+   * @param key - The key of the object.
+   * @returns The result of the operation.
+   */
   async delete(key: string): Promise<{ ok: true } | { ok: false; error: string }> {
     try {
       await this.s3.deleteObject({
@@ -61,7 +80,14 @@ export class Bucket {
     return { ok: true };
   }
 
-  async put(key: string, blob: Uint8Array | Blob | Buffer | ReadableStream | string | undefined) {
+  /**
+   * Puts an object into the bucket.
+   *
+   * @param key - The key of the object.
+   * @param blob - The data of the object.
+   * @returns The result of the operation.
+   */
+  async put(key: string, blob: string | Uint8Array | Buffer | Readable) {
     try {
       const response = await this.s3.putObject({
         Bucket: this.name,
