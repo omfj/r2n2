@@ -1,6 +1,6 @@
 {
   "name": "@omfj/r2n2",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": "Ole Magnus Fon Johnsen <me@omfj.no>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
