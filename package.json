@@ -1,6 +1,6 @@
 {
   "name": "@omfj/r2n2",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "author": "Ole Magnus Fon Johnsen <me@omfj.no>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.2.0",
+    "@types/node": "^20.12.12",
     "eslint": "9.2.0",
     "prettier": "3.2.5",
     "tsup": "8.0.2",

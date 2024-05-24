@@ -1,5 +1,5 @@
 import { S3 } from "@aws-sdk/client-s3";
-import { Readable } from "node:stream";
+import { Readable } from "stream";
 
 export class Bucket {
   name: string;
